@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/core/resources_manager/shared_styles/colors.dart';
+import 'package:ecommerce_app/features/Onboarding/splash_screen_start.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
@@ -14,15 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home:start() ,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Montserrat',
+        primaryColor: AppColors.white,
+      ),
+      home: SplashScreen(),
     );
-  }
-}
-class start extends StatelessWidget {
-  const start({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
