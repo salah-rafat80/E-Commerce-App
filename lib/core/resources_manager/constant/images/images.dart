@@ -5,4 +5,7 @@ class AppImages{
   static String onboarding1 = '${baseUrlImage}onboarging_1.svg';
   static String onboarding2 = '${baseUrlImage}onboarging_2.svg';
   static String onboarding3 = '${baseUrlImage}onboarging_3.svg';
+  static String notFoundOrder = '${baseUrlImage}NoOrder Svg.svg';
+  static String categoryOrder = '${baseUrlImage}gategory_image.png';
+  static String categoryOrderAnother = '${baseUrlImage}categoryAnother.png';
 }
