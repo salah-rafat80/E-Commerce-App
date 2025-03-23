@@ -16,7 +16,7 @@ List<BottomNavigationBarItem> bottomNavItems = [
   ),
   BottomNavigationBarItem(
     icon: SvgPicture.asset(AppIcons.profile, fit: BoxFit.fill),
-    activeIcon: SvgPicture.asset(AppIcons.profile, fit: BoxFit.fill),
+    activeIcon: SvgPicture.asset(AppIcons.profile2, fit: BoxFit.fill),
     label: 'Profile',
   ),
 ];

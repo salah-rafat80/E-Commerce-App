@@ -1,11 +1,14 @@
 import 'package:ecommerce_app/core/resources_manager/shared_styles/colors.dart';
+import 'package:ecommerce_app/features/Home/manager/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/resources_manager/constant/images/images.dart';
-import '../Trending_Products_screen.dart';
-import '../home_screen.dart';
+import '../../manager/cubit/home_state.dart';
+import '../screens/Trending_Products_screen.dart';
+import '../screens/home_screen.dart';
 
 class AppbarHome extends StatelessWidget {
   const AppbarHome({super.key});
@@ -209,8 +212,19 @@ class PromoCard extends StatelessWidget {
 }
 
 
-class ProductGridSection extends StatelessWidget {
+class ProductGridSection extends StatefulWidget {
   const ProductGridSection({Key? key}) : super(key: key);
+
+  @override
+  State<ProductGridSection> createState() => _ProductGridSectionState();
+}
+
+class _ProductGridSectionState extends State<ProductGridSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeCubit>().getBestSelleing();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -227,32 +241,47 @@ class ProductGridSection extends StatelessWidget {
             ),
           ),
         ),
-        GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.51, // تعديل النسبة لحل مشكلة التجاوز
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-          ),
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return ProductCard(
-              name: 'Mens Starry',
-              description: 'Mens Starry Sky Printed Shirt',
-              fabric: '100% Cotton Fabric',
-              price: '₹399',
-              rating: 4.5,
-              reviewCount: '152,344',
-              imageAsset: AppImages.mensStarry,
-              onTap: () {
-                Get.to(() => ProductDetailScreen());
-              },
+        BlocConsumer<HomeCubit, HomeState>(builder: (context, state) {
+
+          if (state is HomeSuccess) {
+            return Builder(
+              builder: (context) {
+                return  GridView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, // تغيير من 1 إلى 2 لعرض عنصرين في الصف
+                    childAspectRatio: 0.65,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemCount: state.BestSelleing.length,
+                  itemBuilder: (context, index) {
+                    final product = state.BestSelleing[index].bestSellerProducts?[0]; // العنصر الأول فقط
+                    return ProductCard(
+                      name: product?.name ?? "No Name",
+                      description: product?.description ?? "No Description",
+                      price: product?.price.toString() ?? "0",
+                      rating: product?.rating ?? 0.0,
+                      reviewCount: '152,344',
+                      imageAsset: product?.imagePath ?? "",
+                      onTap: () {
+                        Get.to(() => ProductDetailScreen());
+                      },
+                    );
+                  },
+                );
+              }
             );
-          },
-        ),
+          }else{
+            return const Center(child: CircularProgressIndicator());
+          }
+        }, listener: (context, state) {
+          if (state is HomeError) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));// Show a SnackBar with the error state.message);
+          }
+        },),
       ],
     );
   }
@@ -263,7 +292,7 @@ class ProductGridSection extends StatelessWidget {
 class ProductCard extends StatelessWidget {
   final String name;
   final String description;
-  final String fabric;
+
   final String price;
   final double rating;
   final String reviewCount;
@@ -274,7 +303,7 @@ class ProductCard extends StatelessWidget {
     Key? key,
     required this.name,
     required this.description,
-    required this.fabric,
+
     required this.price,
     required this.rating,
     required this.reviewCount,
@@ -301,7 +330,7 @@ class ProductCard extends StatelessWidget {
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
-              child: Image.asset(
+              child: Image.network(
                 imageAsset,
                 height: 170, // تقليل ارتفاع الصورة
                 width: double.infinity,
@@ -335,13 +364,13 @@ class ProductCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 2), // تقليل المسافة
-                    Text(
-                      fabric,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
+                    // Text(
+                    //   fabric,
+                    //   style: TextStyle(
+                    //     fontSize: 14,
+                    //     color: Colors.grey.shade600,
+                    //   ),
+                    // ),
                     const SizedBox(height: 4), // تقليل المسافة
                     Text(
                       price,

@@ -1,15 +1,17 @@
 import 'package:ecommerce_app/core/resources_manager/shared_styles/colors.dart';
+import 'package:ecommerce_app/features/Home/views/shared_widgit/profile_screen.dart';
 import 'package:ecommerce_app/features/Home/views/shared_widgit/shared_widgt.dart';
 import 'package:flutter/material.dart';
 
 import 'Trending_Products_screen.dart';
 import 'home_screen.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
   static final List<Widget> _screens = [
     const HomeScreen(),
     const TrendingProductsScreen(),
-    const HomeScreen(),
+    const ProfileScreen(),
   ];
   @override
   State<MainScreen> createState() => _MainScreenState();

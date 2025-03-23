@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_widget/home_widget.dart';
+import '../home_widget/home_widget.dart';
 
 class TrendingProductsScreen extends StatelessWidget {
   const TrendingProductsScreen({super.key});

@@ -22,6 +22,7 @@ class ProductDetailScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -137,12 +138,11 @@ class ProductDetailScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+
                 ],
               ),
             ),
           ),
-
-          // Add to Cart Button
           Container(
             width: double.infinity,
             margin: const EdgeInsets.all(16),
@@ -160,59 +160,8 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 20),
 
-          // Bottom Navigation Bar
-          // Container(
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     boxShadow: [
-          //       BoxShadow(
-          //         color: Colors.grey.withOpacity(0.2),
-          //         spreadRadius: 1,
-          //         blurRadius: 5,
-          //       ),
-          //     ],
-          //   ),
-          //   child: Padding(
-          //     padding: const EdgeInsets.symmetric(vertical: 8),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //       children: [
-          //         const NavBarItem(icon: Icons.home_outlined, label: 'Home', isSelected: false),
-          //         const NavBarItem(icon: Icons.search_outlined, label: 'Search', isSelected: false),
-          //         const CircleAvatar(
-          //           backgroundColor: Colors.redAccent,
-          //           radius: 25,
-          //           child: Icon(Icons.shopping_bag_outlined, color: Colors.white),
-          //         ),
-          //         const NavBarItem(icon: Icons.favorite_border_outlined, label: 'Wishlist', isSelected: false),
-          //         NavBarItem(
-          //           icon: Icons.person_outline,
-          //           label: 'Profile',
-          //           isSelected: false,
-          //           extraWidget: Positioned(
-          //             right: 0,
-          //             top: 0,
-          //             child: Container(
-          //               padding: const EdgeInsets.all(4),
-          //               decoration: const BoxDecoration(
-          //                 color: Colors.redAccent,
-          //                 shape: BoxShape.circle,
-          //               ),
-          //               child: const Text(
-          //                 '2',
-          //                 style: TextStyle(
-          //                   color: Colors.white,
-          //                   fontSize: 10,
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

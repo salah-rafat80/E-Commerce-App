@@ -1,12 +1,16 @@
+import 'package:ecommerce_app/features/Home/manager/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
-import 'home_widget/home_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../home_widget/home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(create: (context) {
+      return HomeCubit()..getBestSelleing();
+    },child: Scaffold(
       body: Column(
         children: [
           Expanded(
@@ -17,7 +21,11 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   AllFeaturedList(),
                   PromotionalCarousel(),
-                  ProductGridSection(),
+                  Builder(
+                    builder: (context) {
+                      return ProductGridSection();
+                    }
+                  ),
                   SizedBox(height: 20),
                 ],
               ),
@@ -25,6 +33,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ),);
   }
 }

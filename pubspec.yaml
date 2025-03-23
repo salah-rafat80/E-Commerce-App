@@ -30,9 +30,11 @@ environment:
 dependencies:
   flutter_svg: ^2.0.17
   flutter_bloc: ^9.1.0
-  dartz: ^0.10.1
+
   get: ^4.7.2
   flutter_onboarding_slider: ^1.0.11
+  dio:
+  dartz: ^0.10.1
 
 
 

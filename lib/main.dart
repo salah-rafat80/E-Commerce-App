@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-
-
-import 'features/Home/views/main_screen.dart';
-
-// import 'features/Onboarding/splash_screen.dart';
+import 'features/Home/views/screens/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
