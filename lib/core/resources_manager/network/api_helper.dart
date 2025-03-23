@@ -77,7 +77,7 @@ class ApiHelper {
         data: isFormdata ? FormData.fromMap(data ?? {}) : data,
         options: Options(
           headers: {
-            if (isAuthorized) "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0Mjc1NjM3MywianRpIjoiNTM5ZDA1N2MtNzgwNi00NWU5LTk0NGItOTYzMTNlNjg3MTViIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzQyNzU2MzczLCJjc3JmIjoiMmI3NmRkMjItNTAzOS00YWZkLWE5MzgtNTY5Y2UzNjBjNGYzIiwiZXhwIjoxNzQyNzU3MjczfQ.toiAaxDTlsbfF8jOsOILm8uKdtLIN3NWra13x0gdez0",
+            if (isAuthorized) "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0Mjc2MDg2NiwianRpIjoiNjNhNzdiMWMtODMyMC00MTk5LThmODgtOGNjODkwZjViZTQzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzQyNzYwODY2LCJjc3JmIjoiMDg4NGJlN2UtOTkwYS00YjcxLThjZTItM2UzZWNmNmFhZWRlIiwiZXhwIjoxNzQyNzYxNzY2fQ.kl1KNgN5JpwVilADoYu2sQQn5gJMepnpFcWsORNfPSA",
           },
         ),
       );

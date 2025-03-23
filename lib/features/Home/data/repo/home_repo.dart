@@ -22,17 +22,21 @@ class HomeRepo {
       isAuthorized: true,
     );
 
-    BestSellingModel BestSelling = BestSellingModel.fromJson(response.data!);
-    if (response.status) {
-      if (BestSelling.bestSellerProducts == null) {
-        return left(response.message);
+    // تحقق من أن البيانات ليست null ومن نوع Map
+    if (response.data == null || response.data is! Map<String, dynamic>) {
+      return left("Invalid response format");
+    }
+
+    try {
+      BestSellingModel bestSelling = BestSellingModel.fromJson(response.data!);
+      if (bestSelling.bestSellerProducts == null) {
+        return left("No products available");
       }
-      return right([BestSelling]);
-    } else {
-      return left(response.message);
+      return right([bestSelling]);
+    } catch (e) {
+      return left("Data parsing failed: ${e.toString()}");
     }
   }
-
 
   // Future<Either<String, String>> getUserData() async {
   //   ApiResponse response = await apiHelper.getRequest(

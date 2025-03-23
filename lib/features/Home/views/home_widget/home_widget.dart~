@@ -274,10 +274,8 @@ class _ProductGridSectionState extends State<ProductGridSection> {
                 );
               }
             );
-          }else if (state is HomeLoading) {
-            return const Center(child: CircularProgressIndicator());
           }else{
-            return Text("non");
+            return const Center(child: CircularProgressIndicator());
           }
         }, listener: (context, state) {
           if (state is HomeError) {
