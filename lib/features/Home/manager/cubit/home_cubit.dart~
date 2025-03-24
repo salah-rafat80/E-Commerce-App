@@ -15,7 +15,7 @@ class HomeCubit extends Cubit<HomeState> {
       emit(HomeLoading());
       await Future.delayed(Duration(seconds: 2));
 
-      Either<String, List<BestSelleingModel>> result = await HomeRepo.getinstance().bestSeller();
+      Either<String, List<BestSellingModel>> result = await HomeRepo.getinstance().bestSeller();
 
       result.fold(
             (failure) {

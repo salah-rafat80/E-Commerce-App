@@ -21,7 +21,8 @@ class HomeRepo {
       url: Endpoints.bestSeller,
       isAuthorized: true,
     );
-
+print("response ${response.data.toString()}");
+print("response ${response.message.toString()}");
     // تحقق من أن البيانات ليست null ومن نوع Map
     if (response.data == null || response.data is! Map<String, dynamic>) {
       return left("Invalid response format");

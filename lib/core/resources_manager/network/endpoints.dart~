@@ -1,5 +1,5 @@
 abstract class Endpoints {
-  static const String baseUrl = 'https://nti-ecommerce-api-production-b859.up.railway.app/api/';
+  static const String baseUrl = 'https://nti-ecommerce-api-production.up.railway.app/api/';
   static const String getUserData = 'get_user_data';
   static const String register = "register";
   static const String login = "login";

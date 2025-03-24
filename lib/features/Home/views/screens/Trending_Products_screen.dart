@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../manager/cubit/home_cubit.dart';
 import '../home_widget/home_widget.dart';
 
 class TrendingProductsScreen extends StatelessWidget {
@@ -7,9 +9,10 @@ class TrendingProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      // bottomNavigationBar: BottomNavBar(),
-       Column(
+    return BlocProvider(create: (context) {
+      return HomeCubit()..getBestSelleing();
+    },child: Scaffold(
+      body: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
@@ -18,19 +21,19 @@ class TrendingProductsScreen extends StatelessWidget {
                   AppbarHome(),
                   SizedBox(height: 20),
                   AllFeaturedList(),
-                  ProductGridSection(),
-                  SizedBox(height: 50),
+                  // PromotionalCarousel(),
+                  Builder(
+                      builder: (context) {
+                        return ProductGridSection();
+                      }
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
           ),
-
-          // BottomNavBar(),
         ],
-      );
-
-      // floatingActionButton: FloatingAction(),
-
-
+      ),
+    ),);
   }
 }

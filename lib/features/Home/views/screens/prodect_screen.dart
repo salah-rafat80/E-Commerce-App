@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/core/resources_manager/constant/images/images.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/resources_manager/shared_styles/colors.dart';
+
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
 
@@ -59,7 +61,7 @@ class ProductDetailScreen extends StatelessWidget {
                           ),
                           child: const Icon(
                             Icons.favorite,
-                            color: Colors.redAccent,
+                            color: AppColors.sizzlingRed,
                             size: 20,
                           ),
                         ),

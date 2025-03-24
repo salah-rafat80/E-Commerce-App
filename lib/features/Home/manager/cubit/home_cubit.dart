@@ -13,7 +13,6 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       print("🔄 بدأ تحميل البيانات...");
       emit(HomeLoading());
-      await Future.delayed(Duration(seconds: 2));
 
       Either<String, List<BestSellingModel>> result = await HomeRepo.getinstance().bestSeller();
 

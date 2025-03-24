@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter_svg: ^2.0.17
   flutter_bloc: ^9.1.0
+  smooth_page_indicator:  # Add this for page indicators
+  introduction_screen:
+  dots_indicator:
+  carousel_slider:
 
   get: ^4.7.2
   flutter_onboarding_slider: ^1.0.11

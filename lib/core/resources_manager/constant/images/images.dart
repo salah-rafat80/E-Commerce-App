@@ -16,6 +16,7 @@ class AppImages{
 
 
 }
+
 class AppIcons{
   static String baseUrlIcon = 'assets/icons/';
   static String combined = '${baseUrlIcon}Combined-Shape.svg';

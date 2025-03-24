@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/resources_manager/constant/images/images.dart';
+import '../../data/model/best_selleing_model.dart';
 import '../../manager/cubit/home_state.dart';
 import '../screens/Trending_Products_screen.dart';
 import '../screens/home_screen.dart';
@@ -252,7 +253,7 @@ class _ProductGridSectionState extends State<ProductGridSection> {
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, // تغيير من 1 إلى 2 لعرض عنصرين في الصف
-                    childAspectRatio: 0.65,
+                    childAspectRatio: 0.55,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
@@ -267,7 +268,7 @@ class _ProductGridSectionState extends State<ProductGridSection> {
                       reviewCount: '152,344',
                       imageAsset: product?.imagePath ?? "",
                       onTap: () {
-                        Get.to(() => ProductDetailScreen());
+                        Get.to(() => ProductDetailScreen(bestSellerProducts: product!,));
                       },
                     );
                   },
@@ -793,8 +794,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 // PRODUCT DETAIL SCREEN
 class ProductDetailScreen extends StatefulWidget {
-  const ProductDetailScreen({Key? key}) : super(key: key);
-
+  const ProductDetailScreen({Key? key, required this.bestSellerProducts}) : super(key: key);
+final BestSellerProducts bestSellerProducts;
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
 }
@@ -849,8 +850,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            AppImages.mensStarry,
+                          child: Image.network(
+                            widget.bestSellerProducts.imagePath??"",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -874,6 +875,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               isFavorite ? Icons.favorite : Icons.favorite_border,
                               color: isFavorite ? Colors.red : Colors.grey,
                               size: 24,
+
                             ),
                           ),
                         ),
@@ -890,16 +892,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Mens Starry',
-                          style: TextStyle(
+                        Text(
+                          widget.bestSellerProducts.name??"",
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Vision Alta Men\'s Shoes Size (All Colours) Mens Starry Sky Printed Shirt 100% Cotton Fabric',
+                         Text(
+                          widget.bestSellerProducts.description??"",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey,
@@ -911,8 +913,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
-                              '100 \$',
+                             Text(
+                              '${widget.bestSellerProducts.price}\$',
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
