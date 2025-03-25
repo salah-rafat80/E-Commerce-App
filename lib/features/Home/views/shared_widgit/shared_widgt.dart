@@ -2,6 +2,9 @@ import 'package:ecommerce_app/core/resources_manager/constant/images/images.dart
 import 'package:ecommerce_app/core/resources_manager/shared_styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../../my_orders/my_order_view.dart';
 List<BottomNavigationBarItem> bottomNavItems = [
   BottomNavigationBarItem(
 
@@ -35,7 +38,7 @@ class FloatingAction extends StatelessWidget {
           eccentricity: 0.5,
         ),
         onPressed: () {
-          //Go to >> cart
+          Get.to(MyOrderView());
         },
         backgroundColor: AppColors.sizzlingRed,
         child: Center(

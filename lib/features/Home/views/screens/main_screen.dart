@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/core/resources_manager/shared_styles/colors.dart';
-import 'package:ecommerce_app/features/Home/views/shared_widgit/profile_screen.dart';
+import 'package:ecommerce_app/features/profile/profile_screen.dart';
 import 'package:ecommerce_app/features/Home/views/shared_widgit/shared_widgt.dart';
 import 'package:flutter/material.dart';
 

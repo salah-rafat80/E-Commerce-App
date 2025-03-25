@@ -224,7 +224,7 @@ class _ProductGridSectionState extends State<ProductGridSection> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeCubit>().getBestSelleing();
+    context.read<HomeCubit>().getBestSelleing(); // تعديل التسمية
   }
 
   @override
@@ -242,49 +242,56 @@ class _ProductGridSectionState extends State<ProductGridSection> {
             ),
           ),
         ),
-        BlocConsumer<HomeCubit, HomeState>(builder: (context, state) {
-
-          if (state is HomeSuccess) {
-            return Builder(
-              builder: (context) {
-                return  GridView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, // تغيير من 1 إلى 2 لعرض عنصرين في الصف
-                    childAspectRatio: 0.55,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemCount: state.BestSelleing.length,
-                  itemBuilder: (context, index) {
-                    final product = state.BestSelleing[index].bestSellerProducts?[0]; // العنصر الأول فقط
-                    return ProductCard(
-                      name: product?.name ?? "No Name",
-                      description: product?.description ?? "No Description",
-                      price: product?.price.toString() ?? "0",
-                      rating: product?.rating ?? 0.0,
-                      reviewCount: '152,344',
-                      imageAsset: product?.imagePath ?? "",
-                      onTap: () {
-                        Get.to(() => ProductDetailScreen(bestSellerProducts: product!,));
-                      },
-                    );
-                  },
-                );
+        BlocConsumer<HomeCubit, HomeState>(
+          builder: (context, state) {
+            if (state is HomeSuccess) {
+              final bestSellingList = state.BestSelleing;
+              if (bestSellingList.isEmpty || bestSellingList[0].bestSellerProducts == null) {
+                return const Center(child: Text("No Products Available"));
               }
-            );
-          }else if (state is HomeLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }else{
-            return Text("non");
-          }
-        }, listener: (context, state) {
-          if (state is HomeError) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));// Show a SnackBar with the error state.message);
-          }
-        },),
+
+              final products = bestSellingList[0].bestSellerProducts!;
+
+              return GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.55,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ProductCard(
+                    name: product.name ?? "No Name",
+                    description: product.description ?? "No Description",
+                    price: product.price?.toString() ?? "0",
+                    rating: product.rating ?? 0.0,
+                    reviewCount: '152,344',
+                    imageAsset: product.imagePath ?? "",
+                    onTap: () {
+                      Get.to(() => ProductDetailScreen(bestSellerProducts: product));
+                    },
+                  );
+                },
+              );
+            } else if (state is HomeLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return const Center(child: Text("Failed to load products"));
+            }
+          },
+          listener: (context, state) {
+            if (state is HomeError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+            }
+          },
+        ),
       ],
     );
   }

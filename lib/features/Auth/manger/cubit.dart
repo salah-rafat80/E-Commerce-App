@@ -38,7 +38,9 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> register() async {
     emit(RegisterLodinState());
-
+   if (passwordController.text != confirmPassword.text) {
+     emit(RegisterErorrState(error: 'Password does not match'));
+   }
     var result = await authRepo.register(
         email: emailController.text,
         password: passwordController.text,

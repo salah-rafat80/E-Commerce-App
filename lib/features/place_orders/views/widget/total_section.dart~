@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/color/colors.dart';
+import '../../manager/cubit/cart_cubit.dart';
+
+class TotalSection extends StatelessWidget {
+  const TotalSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(color: Colors.grey.withOpacity(0.1), blurRadius: 10),
+        ],
+      ),
+      child: Column(
+        children: [
+          _buildRow("Subtotal", context.read<CartCubit>().subtotal),
+          _buildRow("Tax and Fees", 3.0),
+          _buildRow("Delivery Fee", 2.0),
+          const Divider(color: AppColors.dividerColor, height: 24),
+          _buildRow("Order Total",
+            context.read<CartCubit>().total,
+            isTotal: true,
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+              ),
+              onPressed: () {},
+              child: const Text(
+                "Checkout",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

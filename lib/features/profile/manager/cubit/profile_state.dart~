@@ -1,0 +1,12 @@
+abstract class ProfileState {}
+
+class ProfileInitial extends ProfileState {}
+
+class ProfileDataSuccess extends ProfileState {}
+
+class ProfileDataError extends ProfileState {
+  String message;
+  ProfileDataError({required this.message});
+}
+
+class ProfileDataLoading extends ProfileState {}

@@ -33,22 +33,18 @@ class User {
   String? name;
   String? phone;
 
-  User(
-      {this.email,
-      this.favoriteProducts,
-      this.id,
-      this.imagePath,
-      this.name,
-      this.phone});
+  User({
+    this.email,
+    this.favoriteProducts,
+    this.id,
+    this.imagePath,
+    this.name,
+    this.phone,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
     email = json['email'];
-    if (json['favorite_products'] != null) {
-      favoriteProducts = [];
-      json['favorite_products'].forEach((v) {
-        favoriteProducts!.add(v);
-      });
-    }
+    favoriteProducts = json['favorite_products'] ?? [];
     id = json['id'];
     imagePath = json['image_path'];
     name = json['name'];
@@ -56,16 +52,14 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this.email;
-    if (this.favoriteProducts != null) {
-      data['favorite_products'] =
-          this.favoriteProducts!.map((v) => v.toJson()).toList();
-    }
-    data['id'] = this.id;
-    data['image_path'] = this.imagePath;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    return data;
+    return {
+      'email': email,
+      'favorite_products': favoriteProducts ?? [],
+      'id': id,
+      'image_path': imagePath,
+      'name': name,
+      'phone': phone,
+    };
   }
 }
+

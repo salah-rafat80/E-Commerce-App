@@ -34,6 +34,7 @@ dependencies:
   introduction_screen:
   dots_indicator:
   carousel_slider:
+  file_picker:
 
   get: ^4.7.2
   flutter_onboarding_slider: ^1.0.11

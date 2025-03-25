@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/core/resources_manager/constant/images/images.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/resources_manager/shared_styles/colors.dart';
+import '../../../place_orders/place_order_screen.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);
@@ -129,7 +131,9 @@ class ProductDetailScreen extends StatelessWidget {
                                     ),
                                     child: IconButton(
                                       icon: const Icon(Icons.add, color: Colors.white),
-                                      onPressed: () {},
+                                      onPressed: () {
+
+                                      },
                                     ),
                                   ),
                                 ],
@@ -145,19 +149,24 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            margin: const EdgeInsets.all(16),
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_cart_outlined),
-              label: const Text('Add To Cart'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+          InkWell(
+            onTap: () => Get.to(PlaceOrderScreen()),
+            child: Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(16),
+              child: ElevatedButton.icon(
+                onPressed: () {
+
+                },
+                icon: const Icon(Icons.shopping_cart_outlined,color: AppColors.white,),
+                label: const Text('Add To Cart',style: TextStyle(color: AppColors.white),),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
             ),

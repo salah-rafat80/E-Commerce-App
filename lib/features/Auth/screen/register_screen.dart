@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                     height: AppSizBox.sizh30,
                   ),
                   DefultTextFormFIled(
-                    controller: AuthCubit.getinstance().nameController,
+                    controller: AuthCubit.get(context).nameController,
                     lable: AppText.fullName,
                     prefixicon: AppIcons.user,
                   ),
@@ -50,7 +50,7 @@ class RegisterScreen extends StatelessWidget {
                     height: AppSizBox.sizh10,
                   ),
                   DefultTextFormFIled(
-                    controller: AuthCubit.getinstance().phoneController,
+                    controller: AuthCubit.get(context).phoneController,
                     lable: AppText.phone,
                     prefixicon: AppIcons.call,
                   ),
@@ -58,7 +58,7 @@ class RegisterScreen extends StatelessWidget {
                     height: AppSizBox.sizh10,
                   ),
                   DefultTextFormFIled(
-                    controller: AuthCubit.getinstance().emailController,
+                    controller: AuthCubit.get(context).emailController,
                     lable: AppText.email,
                     prefixicon: AppIcons.email,
                   ),
@@ -66,13 +66,13 @@ class RegisterScreen extends StatelessWidget {
                     height: AppSizBox.sizh10,
                   ),
                   DefultTextFormFIled(
-                    obScure: AuthCubit.getinstance().isPasswordVisible,
-                    controller: AuthCubit.getinstance().passwordController,
+                    obScure: AuthCubit.get(context).isPasswordVisible,
+                    controller: AuthCubit.get(context).passwordController,
                     lable: AppText.password,
                     prefixicon: AppIcons.lock,
                     sufxIcon: IconButton(
                         onPressed: () {},
-                        icon: AuthCubit.getinstance().isPasswordVisible
+                        icon: AuthCubit.get(context).isPasswordVisible
                             ? Icon(Icons.lock)
                             : SvgPicture.asset(AppIcons.eye)),
                   ),
@@ -80,13 +80,13 @@ class RegisterScreen extends StatelessWidget {
                     height: AppSizBox.sizh10,
                   ),
                   DefultTextFormFIled(
-                    obScure: AuthCubit.getinstance().isPasswordVisibleconfirm,
-                    controller: AuthCubit.getinstance().confirmPassword,
+                    obScure: AuthCubit.get(context).isPasswordVisibleconfirm,
+                    controller: AuthCubit.get(context).confirmPassword,
                     lable: AppText.password,
                     prefixicon: AppIcons.lock,
                     sufxIcon: IconButton(
                         onPressed: () {},
-                        icon: AuthCubit.getinstance().isPasswordVisibleconfirm
+                        icon: AuthCubit.get(context).isPasswordVisibleconfirm
                             ? Icon(Icons.lock)
                             : SvgPicture.asset(AppIcons.eye)),
                   ),
@@ -141,7 +141,7 @@ class RegisterScreen extends StatelessWidget {
                         return DefultButton(
                             text: AppText.creatanaccount,
                             ontap: () {
-                              AuthCubit.getinstance().register();
+                              AuthCubit.get(context).register();
                               if (state is RegisterScuessState) {
                                 MyNavigator.navigatTo(
                                   screen: LoginScreen(),
